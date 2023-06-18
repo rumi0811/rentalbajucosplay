@@ -221,7 +221,9 @@ class Admin extends CI_Controller {
     }
 
     public function transaksi(){
-        $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where transaksi.cosplay_transaksi = bajucosplay.id_cosplay and transaksi.pelanggan_transaksi = pelanggan.id_pelanggan")->result();
+        $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where 
+        transaksi.cosplay_transaksi = bajucosplay.id_cosplay and 
+        transaksi.pelanggan_transaksi = pelanggan.id_pelanggan")->result();
         $this->load->view('admin/header');
         $this->load->view('admin/transaksi', $data);
         $this->load->view('admin/footer');
@@ -305,7 +307,9 @@ class Admin extends CI_Controller {
     public function transaksi_selesai($id){
         $data['bajucosplay'] = $this->m_rental->get_data('bajucosplay')->result();
         $data['pelanggan'] = $this->m_rental->get_data('pelanggan')->result();
-        $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where transaksi.pelanggan_transaksi = pelanggan.id_pelanggan and transaksi.cosplay_transaksi = bajucosplay.id_cosplay and id_transaksi = '$id'")->result();
+        $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where 
+        transaksi.pelanggan_transaksi = pelanggan.id_pelanggan and transaksi.cosplay_transaksi = 
+        bajucosplay.id_cosplay and id_transaksi = '$id'")->result();
 
         $this->load->view('admin/header');
         $this->load->view('admin/transaksi_selesai', $data);
@@ -352,15 +356,51 @@ class Admin extends CI_Controller {
         } else{
             $data['bajucosplay'] = $this->m_rental->get_data('bajucosplay')->result();
             $data['pelanggan'] = $this->m_rental->get_data('pelanggan')->result();
-            $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where transaksi.cosplay_transaksi = bajucosplay.id_cosplay and transaksi.pelanggan_transaksi = pelanggan.id_pelanggan and id_transaksi = '$id'")->result();
+            $data['transaksi'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan 
+            where transaksi.cosplay_transaksi = bajucosplay.id_cosplay and transaksi.pelanggan_transaksi 
+            = pelanggan.id_pelanggan and id_transaksi = '$id'")->result();
 
             $this->load->view('admin/header');
             $this->load->view('admin/transaksi_selesai', $data);
             $this->load->view('admin/footer');
 
-        }
-        
+        }        
 
     }
 
+    // masuk ke pertemuan ke 13
+    public function laporan(){
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+        $this->form_validation->set_rules('dari', 'Dari Tanggal', 'required');
+        $this->form_validation->set_rules('sampai', 'Sampai Tanggal', 'required');
+
+        if($this->form_validation->run() != false){
+            $data['laporan'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where cosplay_transaksi=id_cosplay 
+            and pelanggan_transaksi=id_pelanggan and date(tgl_transaksi) >= '$dari'")->result();
+
+            $this->load->view('admin/header');
+            $this->load->view('admin/laporan_filter', $data);
+            $this->load->view('admin/footer');
+        }else{
+            $this->load->view('admin/header');
+            $this->load->view('admin/laporan');
+            $this->load->view('admin/footer');
+        }        
+        
+    }
+
+    public function laporan_print(){
+        $dari = $this->input->get('dari');
+        $sampai = $this->input->get('sampai');
+
+        if($dari != "" && $sampai != ""){
+            $data['laporan'] = $this->db->query("select * from transaksi, bajucosplay, pelanggan where cosplay_transaksi=id_cosplay 
+            and pelanggan_transaksi=id_pelanggan and date(tgl_transaksi)>= '$dari'")->result();
+
+            $this->load->view('admin/laporan_print', $data);            
+        }else{
+            redirect("admin/laporan");
+        }
+    }
 }

@@ -21,7 +21,7 @@
     <?php
     if(isset($_GET['pesan'])){
         if($_GET['pesan'] == "gagal"){
-            echo "<div class = 'alert alert-danger'> Login Gagal! Username atau Password salah!!! Atau keduanya salah!!! atau perasaan anda yang salah!!!</div>";
+            echo "<div class = 'alert alert-danger'> Login Gagal! Username atau Password salah!!! Atau keduanya salah!!!</div>";
 
         }else if($_GET['pesan'] == "logout"){
             echo "<div class = 'alert alert-danger'> Anda telah logout!!! </div>";
@@ -37,7 +37,7 @@
         <div class="panel-body">
             <br/>
             <br/>
-            <form method = "post" action="<?php echo base_url(). 'welcome/v_login' ?>">
+            <form method = "post" action="<?php echo base_url(). 'welcome/v_login/' ?>">
                 <div class="form-group">
                     <input type="text" name="username" placeholder="Username" class="form-control">
                     <?php echo form_error('username'); ?>

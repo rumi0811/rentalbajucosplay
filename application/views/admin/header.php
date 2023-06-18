@@ -24,15 +24,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo base_url() . 'admin'; ?>">Rental Baju Cosplay</a>
+                <a class="navbar-brand" href="<?php echo base_url() . 'admin'; ?>">Peminjaman Lapangan</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo base_url() . 'admin'; ?>"><span class="glyphicon glyphicon-home"></span> Dashboard <span class="sr-only">(current)</span></a></li>
-                    <li><a href="<?php echo base_url() . 'admin/bajucosplay'; ?>"><span class="glyphicon glyphicon-folder-open"></span>   Data Baju Cosplay</a></li>
-                    <li><a href="<?php echo base_url() . 'admin/pelanggan'; ?>"><span class="glyphicon glyphicon-user"></span> Data Pelanggan</a></li>
-                    <li><a href="<?php echo base_url() . 'admin/transaksi'; ?>"><span class="glyphicon glyphicon-sort"></span> Transaksi Rental</a></li>
-                    <li><a href="<?php echo base_url() . 'admin/laporan'; ?>"><span class="glyphicon glyphicon-list-alt"></span> Laporan</a></li>
+                    <li><a href="<?php echo base_url() . 'admin/bajucosplay'; ?>"><span class="glyphicon glyphicon-folder-open"></span>   Data Lapangan</a></li>
+                    <li><a href="<?php echo base_url() . 'admin/pelanggan'; ?>"><span class="glyphicon glyphicon-user"></span> Data Customer</a></li>
+                    <li><a href="<?php echo base_url() . 'admin/transaksi'; ?>"><span class="glyphicon glyphicon-sort"></span> Transaksi Peminjaman</a></li>
+                    <!-- <li><a href="<?php echo base_url() . 'admin/laporan'; ?>"><span class="glyphicon glyphicon-list-alt"></span> Laporan</a></li> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="<?php echo base_url() . 'admin/logout'; ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
